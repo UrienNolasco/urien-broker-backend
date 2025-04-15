@@ -1,60 +1,71 @@
-### Login
-POST http://localhost:3000/auth/login
-Content-Type: application/json
-
-{
-    "email": "testuser@example.com",
-    "password": "testpassword"
-}
-
-### Register
+### Register user
 POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {
-    "name": "Test User",
-    "username": "testuser",
-    "password": "testpassword",
-    "email": "testuser@example.com"
+  "name": "Alexandre Faria",
+  "email": "Alexandre.faria@gmail.com",
+  "password": "123456"
 }
 
-### Login 2
+### Login user
 POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "email": "urien@urien.com",
-    "password": "urien"
+  "email": "Alexandre.faria@gmail.com",
+  "password": "123456"
 }
 
-### Register2
+### Register user
 POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {
-    "name": "Urien Nolasco",
-    "username": "urien",
-    "password": "urien",
-    "email": "urien@urien.com"
+  "name": "Urien Silva",
+  "email": "Urien.silva@gmail.com",
+  "password": "123456"
 }
 
-### Rota protegida com token JWT
-GET http://localhost:3000/auth/me
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxNjc4MjFlNC05NDkyLTRmOWUtYTYyZS00ZWZlMWUzYmVlYzUiLCJlbWFpbCI6InRlc3R1c2VyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQ0NzE3NjYzLCJleHAiOjE3NDQ3MTc5NjN9.ncYcjlOqFqnP78jnbR8wMBzmmkMjc_G5ugWw8LUGnBQ
+### Login user
+POST http://localhost:3000/auth/login
+Content-Type: application/json
 
+{
+  "email": "Urien.silva@gmail.com",
+  "password": "123456"
+}
 
+### (Insira aqui o token do login abaixo para testes autenticados)
 ### Create Asset
 POST http://localhost:3000/assets
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxNjc4MjFlNC05NDkyLTRmOWUtYTYyZS00ZWZlMWUzYmVlYzUiLCJlbWFpbCI6InRlc3R1c2VyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQ0NzE3NjYzLCJleHAiOjE3NDQ3MTc5NjN9.ncYcjlOqFqnP78jnbR8wMBzmmkMjc_G5ugWw8LUGnBQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhM2RmNTM0ZS1kY2UyLTRmM2YtYWIwMS0zYjM2NzMyZmY2MzciLCJlbWFpbCI6IlVyaWVuLnNpbHZhQGdtYWlsLmNvbSIsImlhdCI6MTc0NDczODU0MSwiZXhwIjoxNzQ0NzM4ODQxfQ.oUCvgusB--WvSSOUWP1GHYiOCLtomlemkAPnYBTCm9E
 Content-Type: application/json
 
 {
-  "user": "167821e4-9492-4f9e-a62e-4efe1e3beec5",
-  "ticker": "MOVI3"
+  "ticker": "PETR4"
 }
 
+### (Insira aqui o token do login abaixo para testes autenticados)
+### Create Asset
+POST http://localhost:3000/assets
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4NzhmNmYwZC03ZGI1LTRkOGEtYjU2Ni1jY2JmZWIyN2VjYzkiLCJlbWFpbCI6IkFsZXhhbmRyZS5mYXJpYUBnbWFpbC5jb20iLCJpYXQiOjE3NDQ3MzcyMTYsImV4cCI6MTc0NDczNzUxNn0.UisUdIPXYo88AYsBfNQltVuIlcylmnDtVCpKW-ruKvg
+Content-Type: application/json
 
-### GET Asset
+{
+  "ticker": "GOGL4"
+}
+
+### List all Assets
 GET http://localhost:3000/assets
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmOTQyMGNkYS1jZDZjLTRjMWYtODhjYS0xMzk1YmY4MGM0ODUiLCJlbWFpbCI6InVyaWVuQHVyaWVuLmNvbSIsImlhdCI6MTc0NDcxODAxNiwiZXhwIjoxNzQ0NzE4MzE2fQ.KK3mQguLc29X7ncaj6xSeQd3bZWKkjDlikEvzLfIf5Y
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4NzhmNmYwZC03ZGI1LTRkOGEtYjU2Ni1jY2JmZWIyN2VjYzkiLCJlbWFpbCI6IkFsZXhhbmRyZS5mYXJpYUBnbWFpbC5jb20iLCJpYXQiOjE3NDQ3MzcyMTYsImV4cCI6MTc0NDczNzUxNn0.UisUdIPXYo88AYsBfNQltVuIlcylmnDtVCpKW-ruKvg
 
+### Get Asset by ID
+GET http://localhost:3000/assets/90a927be-73c5-44a7-aa63-f932b98c0e2d
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4NzhmNmYwZC03ZGI1LTRkOGEtYjU2Ni1jY2JmZWIyN2VjYzkiLCJlbWFpbCI6IkFsZXhhbmRyZS5mYXJpYUBnbWFpbC5jb20iLCJpYXQiOjE3NDQ3MzcyMTYsImV4cCI6MTc0NDczNzUxNn0.UisUdIPXYo88AYsBfNQltVuIlcylmnDtVCpKW-ruKvg
+
+### Update Asset
+
+### Overview do usuário (substitua o ID pelo real)
+GET http://localhost:3000/users/a3df534e-dce2-4f3f-ab01-3b36732ff637/overview
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhM2RmNTM0ZS1kY2UyLTRmM2YtYWIwMS0zYjM2NzMyZmY2MzciLCJlbWFpbCI6IlVyaWVuLnNpbHZhQGdtYWlsLmNvbSIsImlhdCI6MTc0NDczODU0MSwiZXhwIjoxNzQ0NzM4ODQxfQ.oUCvgusB--WvSSOUWP1GHYiOCLtomlemkAPnYBTCm9E

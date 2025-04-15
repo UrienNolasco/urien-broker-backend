@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  ForbiddenException,
+} from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateAssetDto } from './dto/create-asset.dto';
 
@@ -6,32 +10,53 @@ import { CreateAssetDto } from './dto/create-asset.dto';
 export class AssetService {
   constructor(private prisma: PrismaService) {}
 
-  // Criar um novo ativo
+  // Criar um novo ativo na carteira do usuário
   async create(ticker: string, userId: string) {
+    const wallet = await this.prisma.wallet.findUnique({
+      where: { userId },
+    });
+
+    if (!wallet) {
+      throw new NotFoundException('Carteira não encontrada para este usuário');
+    }
+
     return this.prisma.asset.create({
       data: {
         ticker,
-        userId,
+        walletId: wallet.id,
       },
     });
   }
 
-  // Listar todos os ativos do usuário
+  // Listar todos os ativos da carteira do usuário
   async findAll(userId: string) {
-    return this.prisma.asset.findMany({
+    const wallet = await this.prisma.wallet.findFirst({
       where: { userId },
+    });
+
+    if (!wallet) {
+      throw new NotFoundException('Carteira não encontrada');
+    }
+
+    return this.prisma.asset.findMany({
+      where: { walletId: wallet.id },
     });
   }
 
-  // Buscar um ativo por ID (e garantir que pertence ao usuário)
+  // Buscar um ativo por ID (e garantir que pertence à carteira do usuário)
   async findOne(id: string, userId: string) {
-    const asset = await this.prisma.asset.findUnique({ where: { id } });
+    const asset = await this.prisma.asset.findUnique({
+      where: { id },
+      include: {
+        wallet: true,
+      },
+    });
 
     if (!asset) {
       throw new NotFoundException('Ativo não encontrado');
     }
 
-    if (asset.userId !== userId) {
+    if (asset.wallet.userId !== userId) {
       throw new ForbiddenException('Você não tem acesso a este ativo');
     }
 
@@ -40,7 +65,7 @@ export class AssetService {
 
   // Atualizar um ativo
   async update(id: string, ticker: string, userId: string) {
-    const asset = await this.findOne(id, userId); // garante que o ativo existe e pertence ao user
+    await this.findOne(id, userId); // Validação de acesso
 
     return this.prisma.asset.update({
       where: { id },
@@ -50,7 +75,7 @@ export class AssetService {
 
   // Remover um ativo
   async remove(id: string, userId: string) {
-    await this.findOne(id, userId); // valida se o user pode excluir
+    await this.findOne(id, userId); // Validação de acesso
 
     return this.prisma.asset.delete({
       where: { id },

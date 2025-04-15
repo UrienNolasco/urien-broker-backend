@@ -14,23 +14,32 @@ datasource db {
 }
 
 model User {
-  id          String        @id @default(uuid())
-  email       String        @unique
-  name        String
-  password String
-  assets      Asset[]
-  transactions Transaction[]
-  alerts      Alert[]
-  snapshots   Snapshot[]
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String
+  password  String
+  wallet    Wallet?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Wallet {
+  id            String         @id @default(uuid())
+  user          User           @relation(fields: [userId], references: [id])
+  userId        String         @unique
+  assets        Asset[]
+  transactions  Transaction[]
+  alerts        Alert[]
+  snapshots     Snapshot[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
 }
 
 model Asset {
   id          String        @id @default(uuid())
   ticker      String
-  user        User          @relation(fields: [userId], references: [id])
-  userId      String
+  wallet      Wallet        @relation(fields: [walletId], references: [id])
+  walletId    String
   transactions Transaction[]
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
@@ -42,12 +51,12 @@ model Transaction {
   quantity      Float
   pricePerUnit  Float
   date          DateTime
-  userId        String
-  asset         Asset       @relation(fields: [assetId], references: [id])
+  wallet        Wallet       @relation(fields: [walletId], references: [id])
+  walletId      String
+  asset         Asset        @relation(fields: [assetId], references: [id])
   assetId       String
-  user          User        @relation(fields: [userId], references: [id])
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
 }
 
 model Alert {
@@ -56,15 +65,15 @@ model Alert {
   targetPrice   Float
   direction     AlertDirection
   notified      Boolean     @default(false)
-  user          User        @relation(fields: [userId], references: [id])
-  userId        String
+  wallet        Wallet      @relation(fields: [walletId], references: [id])
+  walletId      String
   createdAt     DateTime    @default(now())
 }
 
 model Snapshot {
   id            String      @id @default(uuid())
-  user          User        @relation(fields: [userId], references: [id])
-  userId        String
+  wallet        Wallet      @relation(fields: [walletId], references: [id])
+  walletId      String
   totalInvested Float
   totalValue    Float
   profitLoss    Float

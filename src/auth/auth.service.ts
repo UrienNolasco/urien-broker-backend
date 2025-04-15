@@ -1,6 +1,9 @@
-import { Injectable, BadRequestException, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  BadRequestException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-
 import * as bcrypt from 'bcrypt';
 import { PrismaService } from 'src/prisma/prisma.service';
 
@@ -30,7 +33,14 @@ export class AuthService {
       },
     });
 
-    return { message: 'Usuário criado com sucesso', userId: user.id };
+    // Criar carteira associada ao usuário
+    await this.prisma.wallet.create({
+      data: {
+        userId: user.id,
+      },
+    });
+
+    return { message: 'Usuário e carteira criados com sucesso', userId: user.id };
   }
 
   async login(data: { email: string; password: string }) {
