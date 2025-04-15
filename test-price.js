@@ -3,7 +3,11 @@ const io = require('socket.io-client');
 // Lista de ações para testar
 const tickers = ['PETR4', 'VALE3', 'ITUB4', 'BBDC4'];
 
-const socket = io('http://localhost:3000');
+const socket = io('http://localhost:3000/price', {
+  query: {
+    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhM2RmNTM0ZS1kY2UyLTRmM2YtYWIwMS0zYjM2NzMyZmY2MzciLCJlbWFpbCI6IlVyaWVuLnNpbHZhQGdtYWlsLmNvbSIsImlhdCI6MTc0NDc1MDkxMCwiZXhwIjoxNzQ0NzUxMjEwfQ.mEiWG6Hxr0L0VXlYs4tyJRpXTXG5HB3OZ8Kp2QAjtpA' // Enviado como "token"
+  }
+});
 
 socket.on('connect', () => {
   console.log('🟢 Conectado ao WebSocket');
