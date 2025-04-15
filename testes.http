@@ -69,3 +69,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4NzhmNmYwZ
 ### Overview do usuário (substitua o ID pelo real)
 GET http://localhost:3000/users/a3df534e-dce2-4f3f-ab01-3b36732ff637/overview
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhM2RmNTM0ZS1kY2UyLTRmM2YtYWIwMS0zYjM2NzMyZmY2MzciLCJlbWFpbCI6IlVyaWVuLnNpbHZhQGdtYWlsLmNvbSIsImlhdCI6MTc0NDczODU0MSwiZXhwIjoxNzQ0NzM4ODQxfQ.oUCvgusB--WvSSOUWP1GHYiOCLtomlemkAPnYBTCm9E
+
+
+### Test Brapi
+GET https://brapi.dev/api/quote/PETR4?token=7L3BFUCcTMd8gvLKkFdRUi
