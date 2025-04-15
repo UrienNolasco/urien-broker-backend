@@ -1,4 +1,4 @@
-
+### Login
 POST http://localhost:3000/auth/login
 Content-Type: application/json
 
@@ -7,7 +7,7 @@ Content-Type: application/json
     "password": "testpassword"
 }
 
-
+### Register
 POST http://localhost:3000/auth/register
 Content-Type: application/json
 
@@ -17,3 +17,7 @@ Content-Type: application/json
     "password": "testpassword",
     "email": "testuser@example.com"
 }
+
+### Rota protegida com token JWT
+GET http://localhost:3000/auth/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxNjc4MjFlNC05NDkyLTRmOWUtYTYyZS00ZWZlMWUzYmVlYzUiLCJlbWFpbCI6InRlc3R1c2VyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQ0NjgyOTExLCJleHAiOjE3NDUyODc3MTF9.NZFGmqAxOTXP7MV2rNh8XM-FRNfHxaYfopF6Pk73Bc4
