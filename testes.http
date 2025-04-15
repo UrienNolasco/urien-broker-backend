@@ -18,6 +18,43 @@ Content-Type: application/json
     "email": "testuser@example.com"
 }
 
+### Login 2
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email": "urien@urien.com",
+    "password": "urien"
+}
+
+### Register2
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+    "name": "Urien Nolasco",
+    "username": "urien",
+    "password": "urien",
+    "email": "urien@urien.com"
+}
+
 ### Rota protegida com token JWT
 GET http://localhost:3000/auth/me
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxNjc4MjFlNC05NDkyLTRmOWUtYTYyZS00ZWZlMWUzYmVlYzUiLCJlbWFpbCI6InRlc3R1c2VyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQ0NjgyOTExLCJleHAiOjE3NDUyODc3MTF9.NZFGmqAxOTXP7MV2rNh8XM-FRNfHxaYfopF6Pk73Bc4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxNjc4MjFlNC05NDkyLTRmOWUtYTYyZS00ZWZlMWUzYmVlYzUiLCJlbWFpbCI6InRlc3R1c2VyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQ0NzE3NjYzLCJleHAiOjE3NDQ3MTc5NjN9.ncYcjlOqFqnP78jnbR8wMBzmmkMjc_G5ugWw8LUGnBQ
+
+
+### Create Asset
+POST http://localhost:3000/assets
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxNjc4MjFlNC05NDkyLTRmOWUtYTYyZS00ZWZlMWUzYmVlYzUiLCJlbWFpbCI6InRlc3R1c2VyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQ0NzE3NjYzLCJleHAiOjE3NDQ3MTc5NjN9.ncYcjlOqFqnP78jnbR8wMBzmmkMjc_G5ugWw8LUGnBQ
+Content-Type: application/json
+
+{
+  "user": "167821e4-9492-4f9e-a62e-4efe1e3beec5",
+  "ticker": "MOVI3"
+}
+
+
+### GET Asset
+GET http://localhost:3000/assets
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmOTQyMGNkYS1jZDZjLTRjMWYtODhjYS0xMzk1YmY4MGM0ODUiLCJlbWFpbCI6InVyaWVuQHVyaWVuLmNvbSIsImlhdCI6MTc0NDcxODAxNiwiZXhwIjoxNzQ0NzE4MzE2fQ.KK3mQguLc29X7ncaj6xSeQd3bZWKkjDlikEvzLfIf5Y
+
