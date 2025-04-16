@@ -1,11 +1,11 @@
 const io = require('socket.io-client');
 
 // Lista de ações para testar
-const tickers = ['PETR4', 'VALE3', 'ITUB4', 'BBDC4'];
+const tickers = ['PETR4', 'BBAS3', 'ITUB4', 'BBDC4'];
 
 const socket = io('http://localhost:3000/price', {
   query: {
-    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhM2RmNTM0ZS1kY2UyLTRmM2YtYWIwMS0zYjM2NzMyZmY2MzciLCJlbWFpbCI6IlVyaWVuLnNpbHZhQGdtYWlsLmNvbSIsImlhdCI6MTc0NDc1MDkxMCwiZXhwIjoxNzQ0NzUxMjEwfQ.mEiWG6Hxr0L0VXlYs4tyJRpXTXG5HB3OZ8Kp2QAjtpA' // Enviado como "token"
+    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4NzhmNmYwZC03ZGI1LTRkOGEtYjU2Ni1jY2JmZWIyN2VjYzkiLCJlbWFpbCI6IkFsZXhhbmRyZS5mYXJpYUBnbWFpbC5jb20iLCJpYXQiOjE3NDQ3NjE1NzMsImV4cCI6MTc0NDc2MTg3M30.43Zi8mwlzSx08yle-4nG9mwZmbVaVtAuejykmabv_OU' // Enviado como "token"
   }
 });
 
