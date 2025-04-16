@@ -8,16 +8,16 @@ import { AuthController } from './auth.controller';
 import { PrismaModule } from 'src/prisma/prisma.module';
 
 @Module({
-    imports: [
-      PassportModule,
-      JwtModule.register({
-        secret: 'JWT_SECRET', // coloca isso no .env depois!
-        signOptions: { expiresIn: '5min' },
-      }),
-      UsersModule,
-      PrismaModule,
-    ],
-    providers: [AuthService, JwtStrategy],
-    controllers: [AuthController],
-  })
-  export class AuthModule {}
+  imports: [
+    PassportModule,
+    JwtModule.register({
+      secret: 'JWT_SECRET', // coloca isso no .env depois!
+      signOptions: { expiresIn: '1d' },
+    }),
+    UsersModule,
+    PrismaModule,
+  ],
+  providers: [AuthService, JwtStrategy],
+  controllers: [AuthController],
+})
+export class AuthModule {}
